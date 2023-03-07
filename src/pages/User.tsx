@@ -2,7 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import React, { ReactElement, useContext } from "react";
 import { RouteObject, useParams } from "react-router-dom";
 import { GlobalData } from "../App";
-import Avatar from "../components/Avatar";
+import Avatar from "../components/Avatar/Avatar";
 import { WebsiteLink } from "../components/WebsiteLink";
 
 function User() {

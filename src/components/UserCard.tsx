@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { user_t } from "../types";
-import Avatar from "./Avatar";
+import Avatar from "./Avatar/Avatar";
 
 export type UserCardProps = { user: user_t };
 
