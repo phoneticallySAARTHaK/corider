@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 import { GlobalData } from "../App";
+import { useOffline } from "../utils";
 
 export default function Header() {
   const { userId } = useParams();
   const navigate = useNavigate();
   const { users } = useContext(GlobalData);
+  const [isOffline] = useOffline();
 
   const currentUser = users[parseInt(userId ?? "") - 1];
   if (userId && !currentUser) {
@@ -21,7 +23,7 @@ export default function Header() {
       display="flex"
       alignItems={"center"}
       gap={4}
-      bg="blackAlpha.100"
+      bg={isOffline ? "red.400" : `blackAlpha.100`}
       p={4}
       fontSize="calc(1.25rem + min(1vw, 1vh))"
     >
