@@ -1,40 +1,24 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#root:empty {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  background-image: url(/public/loader.gif);
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 main.loading {
@@ -45,7 +29,6 @@ dl {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 1rem;
-  width: min-content;
 }
 
 dt {
@@ -54,7 +37,7 @@ dt {
 }
 
 dd {
-  width: max-content;
+  width: fit-content;
 }
 
 dt::after {
@@ -70,4 +53,128 @@ dd > dl {
 
 div > dl {
   padding-bottom: 2rem;
+}
+
+.large-pfp {
+  width: calc(5rem + 10vw);
+  max-height: 30vh;
+  max-width: 30vh;
+  border: 2px #ddd solid;
+  outline: 4px #eee solid;
+  border-radius: 100%;
+  transform: scale(1);
+  transition: transform 0.1s linear;
+  margin-bottom: 2rem;
+}
+
+.large-pfp:hover {
+  transform: scale(1.1);
+  outline-color: cyan;
+}
+
+.card-wrapper {
+  --size: clamp(15rem, 5rem, 20rem);
+
+  width: var(--size);
+  height: var(--size);
+
+  border-radius: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+
+  position: relative;
+}
+
+.card {
+  flex: 1 0 auto;
+  border-radius: 100%;
+  width: var(--size);
+
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-wrapper {
+  width: calc(100% - 0.5rem - min(1vw, 1vh));
+  z-index: 1;
+  background-color: white;
+  border-radius: 100%;
+  overflow: hidden;
+  transition: transform 0.1s linear;
+  transform: scale(1);
+}
+
+.img-wrapper > img {
+  width: 100%;
+}
+
+.img-border {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+}
+
+.card-wrapper > p {
+  position: absolute;
+  top: calc(-2.5rem - min(1vh, 1vw));
+  font-size: calc(150% + min(1vh, 1vw));
+  font-weight: bold;
+  z-index: 2;
+  text-align: center;
+  overflow: visible;
+  width: max-content;
+  padding: 0;
+  margin: 0;
+  color: black;
+  transition: color 0.1s linear;
+  text-align: center;
+}
+
+.card-wrapper:hover .img-wrapper {
+  transform: scale(0.95);
+}
+
+.card-wrapper:hover .img-border {
+  animation: spin infinite 1.5s linear;
+}
+
+.card-wrapper:hover p {
+  animation: color-change infinite 1.5s alternate;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes color-change {
+  from {
+    color: rgba(131, 58, 180, 1);
+  }
+
+  50% {
+    color: rgba(253, 29, 29, 1);
+  }
+  to {
+    color: rgba(252, 176, 69, 1);
+  }
 }

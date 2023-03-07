@@ -1,31 +1,25 @@
-import { Box, ListItem, UnorderedList } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box } from "@chakra-ui/react";
 import { user_t } from "../types";
 import { UserCard } from "./UserCard";
 
 export function UserList({ users }: { users: user_t[] }) {
   return users.length ? (
-    <UnorderedList
-      styleType={"none"}
-      stylePosition={"inside"}
+    <Box
       m={0}
-      spacing={2}
       overflowY={"auto"}
       flex="1 1 auto"
+      display={"grid"}
+      minH={"0px"}
+      gridTemplateColumns={"repeat(auto-fit, minmax(20rem, 1fr))"}
+      gap={6}
+      p={4}
+      placeContent="center"
+      placeItems={"center"}
     >
       {users.map((user) => (
-        <ListItem
-          display={"flex"}
-          justifyContent={"center"}
-          key={user.id}
-          minH={0}
-        >
-          <Box flex={1} as={Link} to={`/users/${user.id}`} maxW={"md"}>
-            <UserCard user={user} />
-          </Box>
-        </ListItem>
+        <UserCard user={user} key={user.id} />
       ))}
-    </UnorderedList>
+    </Box>
   ) : (
     <Box>No users found</Box>
   );

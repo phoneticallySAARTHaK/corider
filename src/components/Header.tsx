@@ -23,6 +23,7 @@ export default function Header() {
       gap={4}
       bg="blackAlpha.100"
       p={4}
+      fontSize="calc(1.25rem + min(1vw, 1vh))"
     >
       {userId ? (
         <>
@@ -33,6 +34,8 @@ export default function Header() {
             icon={<AiOutlineArrowLeft />}
             aria-label={"back"}
             fontSize={"larger"}
+            title="Back"
+            borderRadius={"100%"}
           />
           <Heading fontSize={"inherit"}>{`User: ${currentUser.name}`}</Heading>
         </>
